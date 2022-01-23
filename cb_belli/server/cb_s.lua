@@ -46,4 +46,4 @@ exports("TriggerClientCallback",TriggerClientCallback)
 
 exports("RegisterServerCallback",RegisterServerCallback)
 
--- 𝗠att𝟯#0702's Fix: Sistemato problema quando venire riregistrato un callback
+-- 𝗠att𝟯#0702's Fix: Sistemato problema quando viene riregistrato un callback
