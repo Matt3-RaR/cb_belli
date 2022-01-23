@@ -1,11 +1,16 @@
 local RegisterNetEvent, TriggerClientEvent,RemoveEventHandler,AddEventHandler,TriggerEvent = RegisterNetEvent, TriggerClientEvent,RemoveEventHandler,AddEventHandler,TriggerEvent
 
+local callBackRegistrati={}
 
 local RegisterServerCallback = function(a, b)
-	AddEventHandler(('cb_s:%s'):format(a), function(cb, s, ...)
+	if callBackRegistrati[a] then
+		RemoveEventHandler(callBackRegistrati[a])
+	end
+	local evento = AddEventHandler(('cb_s:%s'):format(a), function(cb, s, ...)
 		local resolve = {b(s, ...)}
 		cb(table.unpack(resolve))
 	end)
+	callBackRegistrati[a]=evento
 end
 
 local TriggerClientCallback = function(src, a, ...)
@@ -40,3 +45,5 @@ end)
 exports("TriggerClientCallback",TriggerClientCallback)
 
 exports("RegisterServerCallback",RegisterServerCallback)
+
+-- 𝗠att𝟯#0702's Fix: Sistemato problema quando venire riregistrato un callback
